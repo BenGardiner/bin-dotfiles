@@ -1,0 +1,6 @@
+#!/bin/bash
+ECLIPSE_HOME=~/Applications/eclipse-luna-cdt
+export PATH=/opt/toolchain/java/64/jdk1.7.0_21/bin:$PATH
+Xvfb :1 -screen 0 1024x768x24 &
+sleep 0.25s
+DISPLAY=:1 ${ECLIPSE_HOME}/eclipse/eclimd -b
