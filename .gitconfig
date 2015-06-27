@@ -1,0 +1,9 @@
+[user]
+	name = Ben Gardiner
+	email = ben.gardiner@irdeto.com
+[color]
+	ui = auto
+[credential]
+	helper = cache --timeout=2628000
+[alias]
+	ldog = log --decorate=auto --oneline --graph
