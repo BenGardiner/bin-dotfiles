@@ -1,0 +1,3 @@
+--type-set=selinux=.te,.if,.fc,.conf
+--type-set=selinux_rules=.te,.if
+--type-set=selinux_contexts=.fc
