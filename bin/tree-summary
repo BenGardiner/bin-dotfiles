@@ -1,0 +1,51 @@
+#!/bin/bash
+
+DIR="$1"
+if [ -z "${DIR}" ]; then
+	DIR="."
+fi
+
+if [ -z "${HEADCOUNT}" ]; then
+	HEADCOUNT=10
+fi
+
+list-all-files()
+{
+	cd "${DIR}"
+	if [ -d .git ]; then
+		git ls-files
+	else
+		find "${DIR}" -type f
+	fi
+	cd -
+}
+
+list-all-files | \
+while read line; do
+	if test -d "${line}"; then continue; fi
+	echo
+	if file "${line}" | grep -qE '(ASCII|Unicode|text)'; then
+		echo -e "\033[4m${line}\033[0m"
+		depth="$(dirname "${line}")"
+		depth="$(echo ${depth} | sed -e 's,[^/],,g')"
+		depth="${#depth}"
+		depth=$(( ${depth} + 1))
+
+		prefix="|"
+		for i in $(seq 1 ${depth}); do
+			prefix=" ${prefix}"
+		done
+
+		cat "${line}" | grep -v '^#' | pygmentize -l c -f terminal256 -O style=monokai -g 2> /dev/null | while read x; do echo "${prefix}${x}"; done  | head -n ${HEADCOUNT}
+
+		if file "${line}" | grep -qE 'unified diff'; then
+			diffstat "${line}" | colordiff
+		fi
+		[ $(cat ${line} | wc -l) -gt ${HEADCOUNT} ] && echo "${prefix}[…]"
+	else
+		echo $(tput bold)
+		file "${line}"
+		echo $(tput sgr0)
+		echo -e "\033[4m$(file "${line}")\033[0m"
+	fi
+done
