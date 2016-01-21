@@ -3,3 +3,4 @@
 --type-set=selinux_contexts=.fc
 --type-set=bb=.bb,.bbclass,.inc,.conf
 --type-set=bbclass=.bbclass
+--type-set=bbappend=.bbappend
