@@ -2,5 +2,5 @@
 dir=$(CDPATH= cd -- "$(dirname -- "${1}")" && pwd)
 
 ln -nsf "${dir}/${1}" /tmp/markmon-space-safe-file
-(cd /tmp && markmon markmon-space-safe-file --view "open \"http://localhost:3000\"" --command "pandoc --mathjax -t HTML5" --stylesheet ~/Library/style.css)
+(cd /tmp && markmon markmon-space-safe-file --view "open \"http://localhost:3000\"" --command "pandoc --from markdown_github --highlight-style=tango --mathjax -t HTML5" --stylesheet ~/Library/style.css)
 
