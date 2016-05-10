@@ -1,9 +1,15 @@
 [user]
 	name = Ben Gardiner
-	email = ben.gardiner@irdeto.com
+	email = ben.l.gardiner@gmail.com
 [color]
 	ui = auto
 [credential]
-	helper = cache --timeout=2628000
+	helper = cache
 [alias]
 	ldog = log --decorate=auto --oneline --graph
+[diff]
+	tool = vimdiff
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
