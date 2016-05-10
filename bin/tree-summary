@@ -21,7 +21,7 @@ list-all-files()
 }
 
 list-all-files | \
-while read line; do
+while read -r line; do
 	if test -d "${line}"; then continue; fi
 	echo
 	if file "${line}" | grep -qE '(ASCII|Unicode|text)'; then
