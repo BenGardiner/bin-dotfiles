@@ -41,7 +41,7 @@ while read -r line; do
 		if file "${line}" | grep -qE 'unified diff'; then
 			diffstat "${line}" | colordiff
 		fi
-		[ $(cat ${line} | wc -l) -gt ${HEADCOUNT} ] && echo "${prefix}[…]"
+		[ $(cat "${line}" | wc -l) -gt ${HEADCOUNT} ] && echo "${prefix}[…]"
 	else
 		echo $(tput bold)
 		file "${line}"
