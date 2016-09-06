@@ -43,9 +43,9 @@ while read -r line; do
 		fi
 		[ $(cat "${line}" | wc -l) -gt ${HEADCOUNT} ] && echo "${prefix}[…]"
 	else
+		echo -e "\033[4m${line}\033[0m"
 		echo $(tput bold)
-		file "${line}"
+		file --brief "${line}"
 		echo $(tput sgr0)
-		echo -e "\033[4m$(file "${line}")\033[0m"
 	fi
 done
