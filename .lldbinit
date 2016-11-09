@@ -1,0 +1,2 @@
+command script import ~/.lldb/fix_brew_python.py
+
